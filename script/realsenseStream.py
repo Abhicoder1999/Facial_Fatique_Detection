@@ -14,6 +14,24 @@ class Camera:
         # Start streaming
         self.pipeline.start(config)
 
+        # Retrieve camera intrinsics
+        profile = self.pipeline.get_active_profile()
+        color_stream = profile.get_stream(rs.stream.color)  # Fetch the stream profile for the color stream
+        self.intrinsics = color_stream.as_video_stream_profile().get_intrinsics()  # Get the intrinsics
+
+    def get_camera_intrinsics(self):
+        return {
+            "width": self.intrinsics.width,
+            "height": self.intrinsics.height,
+            "ppx": self.intrinsics.ppx,  # Principal point x
+            "ppy": self.intrinsics.ppy,  # Principal point y
+            "fx": self.intrinsics.fx,    # Focal length x
+            "fy": self.intrinsics.fy,    # Focal length y
+            "distortion_model": self.intrinsics.model,
+            "coeffs": self.intrinsics.coeffs,  # Distortion coefficients
+        }
+
+
     def run(self,view_img):
         frames = self.pipeline.wait_for_frames()
         color_frame = frames.get_color_frame()
@@ -36,7 +54,7 @@ class Camera:
 
 if __name__ == "__main__":
     cm = Camera()
-
+    print(cm.get_camera_intrinsics())
     while True:
         img = cm.run(True)
         
