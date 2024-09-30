@@ -11,7 +11,7 @@ class FeatureExtractor():
         self.mar_values = []
         self.time_steps = []
         
-        Model_PATH = "shape_predictor_68_face_landmarks.dat"
+        Model_PATH = "../weight/shape_predictor_68_face_landmarks.dat"
         self.faceLandmarkDetector = dlib.shape_predictor(Model_PATH)
 
     def run(self,imageRGB, allFaces, view):
