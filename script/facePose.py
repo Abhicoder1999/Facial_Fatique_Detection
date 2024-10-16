@@ -54,6 +54,9 @@ while cap.isOpened():
             cam_matrix = np.array([[focal_length,0,img_h/2],
                                   [0,focal_length,img_w/2],
                                   [0,0,1]])
+            
+            print("cam_matrix:", cam_matrix)
+
             distortion_matrix = np.zeros((4,1),dtype=np.float64)
 
             success,rotation_vec,translation_vec = cv2.solvePnP(face_3d,face_2d,cam_matrix,distortion_matrix)
@@ -68,6 +71,7 @@ while cap.isOpened():
             y = angles[1] * 360
             z = angles[2] * 360
 
+            print("x y z:", x, y, z)
             #here based on axis rot angle is calculated
             if y < -10:
                 text="Looking Left"
