@@ -1,14 +1,14 @@
 import cv2
 from realsenseStream import Camera
 from faceDetector import FaceDetector
-from featureExtractor import FeatureExtractor
+from featureExtractor70Points import FeatureExtractor70Points
 
 class fatique_detector:
 
     def __init__(self) -> None:
         self.camera = Camera()
         self.facedet = FaceDetector()
-        self.featext = FeatureExtractor()
+        self.featext = FeatureExtractor70Points()
 
     def start(self):
         while True:

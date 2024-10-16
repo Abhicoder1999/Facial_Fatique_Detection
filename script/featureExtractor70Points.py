@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 
 
-class FeatureExtractor():
+class FeatureExtractor70Points():
     def __init__(self) -> None:
         self.ear_values = []
         self.mar_values = []
@@ -81,7 +81,7 @@ class FeatureExtractor():
             cv2.circle(image, (p.x, p.y), radius, color, -1)
 
 
-    def calculateEAR(self, eye):
+    def     calculateEAR(self, eye):
         # Vertical distances
         A = np.linalg.norm(eye[1] - eye[5])
         B = np.linalg.norm(eye[2] - eye[4])
@@ -140,10 +140,10 @@ class FeatureExtractor():
         )
 
         # Vertical distances
-        A = np.linalg.norm(mouth[1] - mouth[5])  # ||P50 - P58||
-        B = np.linalg.norm(mouth[2] - mouth[4])  # ||P52 - P56||
+        A = np.linalg.norm(mouth[1] - mouth[5])  # ||P51 - P59||
+        B = np.linalg.norm(mouth[2] - mouth[4])  # ||P53 - P57||
         # Horizontal distance
-        D = np.linalg.norm(mouth[0] - mouth[3])  # ||P48 - P54||
+        D = np.linalg.norm(mouth[0] - mouth[3])  # ||P49 - P55||
         # MAR calculation
         mar = (A + B) / (2.0 * D)
         return mar
